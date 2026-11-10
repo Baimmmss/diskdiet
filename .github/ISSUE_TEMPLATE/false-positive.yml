@@ -1,0 +1,16 @@
+name: Wrong match (false positive)
+description: diskdiet listed a folder that should not be deleted
+labels: [bug, safety]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What was listed?
+      description: The row from `diskdiet --list` (feel free to anonymise the path) and what the folder actually is.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: diskdiet version and OS
+      placeholder: diskdiet 0.1.0, macOS 15

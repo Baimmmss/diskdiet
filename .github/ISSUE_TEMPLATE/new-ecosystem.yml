@@ -1,0 +1,28 @@
+name: Add a folder or cache
+description: Suggest something diskdiet should find
+labels: [ecosystem]
+body:
+  - type: input
+    id: tool
+    attributes:
+      label: Tool / ecosystem
+      placeholder: e.g. Gleam, Bazel, Nix
+    validations:
+      required: true
+  - type: input
+    id: path
+    attributes:
+      label: Folder name or cache path
+      placeholder: e.g. build/ next to gleam.toml, or ~/.cache/bazel
+    validations:
+      required: true
+  - type: input
+    id: restore
+    attributes:
+      label: How do you get it back after deleting?
+      placeholder: e.g. gleam build
+  - type: input
+    id: size
+    attributes:
+      label: Typical size on your machine
+      placeholder: e.g. 2 GB
