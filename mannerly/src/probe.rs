@@ -185,7 +185,9 @@ fn base_command(target: &Target, spec: &Spec) -> Command {
     for key in [
         "FORCE_COLOR",
         "CLICOLOR_FORCE",
+        "CLICOLOR",
         "NO_COLOR",
+        "CI",
         "COLUMNS",
         "LINES",
     ] {
@@ -379,6 +381,8 @@ mod pty {
         Ok(unsafe { OwnedFd::from_raw_fd(new) })
     }
 
+    // glibc takes `*const winsize`; macOS/BSD take `*mut winsize`.
+    #[allow(clippy::unnecessary_mut_passed)]
     fn open_pty(cols: u16, rows: u16) -> std::io::Result<(OwnedFd, OwnedFd)> {
         let mut master: libc::c_int = -1;
         let mut slave: libc::c_int = -1;

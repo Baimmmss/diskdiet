@@ -81,7 +81,7 @@ Scoring: pass = full weight, warning = half, fail = 0, skipped = excluded from t
 | Platform | Support |
 |---|---|
 | macOS | full |
-| Linux | full (needs verification) |
+| Linux | full |
 | Windows | partial: PTY and closed-pipe checks skipped |
 
 ## Risks
@@ -113,12 +113,11 @@ Scoring: pass = full weight, warning = half, fail = 0, skipped = excluded from t
 |---|---|
 | Core checks and reports | done |
 | README, skill, Action, CI, release | done |
-| Tests (22 passing on macOS); Linux and Windows type-check | done; Linux runtime tests still need CI |
-| Publish (only when the user says so) | todo |
+| Tests (22 passing on macOS and Linux); Windows build | done |
+| Publish (only when the user says so) | GitHub repo (`Baimmmss/Mannerly`) published; crates.io and Homebrew todo |
 
 ## Open questions
 
-- GitHub owner/repo name for URLs (currently assumed Baimmmss/mannerly)
 - Whether to publish to crates.io and Homebrew at launch
 
 ## Research (2026-11-11)

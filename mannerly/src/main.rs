@@ -169,7 +169,17 @@ fn main() -> ExitCode {
         libc::signal(libc::SIGPIPE, libc::SIG_DFL);
     }
 
-    let cli = Cli::parse();
+    let mut app = <Cli as clap::CommandFactory>::command();
+    if env_set("NO_COLOR")
+        || (!env_set("CLICOLOR_FORCE")
+            && !env_set("FORCE_COLOR")
+            && std::env::var("TERM").is_ok_and(|t| t == "dumb"))
+    {
+        app = app.color(clap::ColorChoice::Never);
+    }
+    let matches = app.get_matches();
+    let cli =
+        <Cli as clap::FromArgMatches>::from_arg_matches(&matches).unwrap_or_else(|e| e.exit());
     let stdout_tty = std::io::stdout().is_terminal();
     let style = report::Style {
         color: use_color(cli.color, stdout_tty),

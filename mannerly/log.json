@@ -3,6 +3,36 @@
   "about": "Change log, like git log: one entry per set of changes, newest first. Only what changed, which files, and why. Plans, research and requirements live in PRD.md.",
   "entries": [
     {
+      "id": 12,
+      "date": "2026-11-11",
+      "summary": "Fix Linux clippy lint on openpty and strip CI env var in probes",
+      "files": {
+        "added": [],
+        "modified": [
+          "PRD.md",
+          "log.json",
+          "src/main.rs",
+          "src/probe.rs"
+        ],
+        "deleted": []
+      },
+      "why": "GitHub Actions CI sets CI=true, which made anstream emit ANSI codes in PTY probes even with TERM=dumb; base_command now removes CI and CLICOLOR, and main disables clap color when TERM=dumb or NO_COLOR is set. Also silenced clippy::unnecessary_mut_passed on libc::openpty where glibc takes *const winsize."
+    },
+    {
+      "id": 11,
+      "date": "2026-11-11",
+      "summary": "Initialize Git repo and publish to GitHub as Baimmmss/Mannerly",
+      "files": {
+        "added": [],
+        "modified": [
+          "PRD.md",
+          "log.json"
+        ],
+        "deleted": []
+      },
+      "why": "User asked to push mannerly to GitHub under Baimmmss/Mannerly with no Claude attribution in GitHub contributions. Marked the GitHub publish milestone and resolved the repo name open question in PRD.md."
+    },
+    {
       "id": 10,
       "date": "2026-11-11",
       "summary": "Convert the PRD from JSON to Markdown",
