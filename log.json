@@ -3,6 +3,36 @@
   "about": "Change log, like git log: one entry per set of changes, newest first. Only what changed, which files, and why. Plans, research and requirements live in PRD.md.",
   "entries": [
     {
+      "id": 5,
+      "date": "2026-11-11",
+      "summary": "Fix Windows path separators in the scan test",
+      "files": {
+        "added": [],
+        "modified": [
+          "src/scan.rs",
+          "log.json"
+        ],
+        "deleted": []
+      },
+      "why": "CI failed on windows-latest: scan::tests::finds_artifacts_but_not_lookalikes compared paths with '/' but Windows prints '\\\\'. Test-only change; the scanner was fine."
+    },
+    {
+      "id": 4,
+      "date": "2026-11-11",
+      "summary": "Publish diskdiet v0.1.0 to crates.io and install from it",
+      "files": {
+        "added": [],
+        "modified": [
+          "README.md",
+          "install.sh",
+          "PRD.md",
+          "log.json"
+        ],
+        "deleted": []
+      },
+      "why": "User asked to publish. README's main install is now `cargo install diskdiet --locked` (the --git command stays as an alternative). install.sh's no-release fallback builds from crates.io (48 KB download) instead of cloning the GitHub repo, whose history carries ~340 MB of old build files. Published with --allow-dirty because these edits weren't committed yet."
+    },
+    {
       "id": 4,
       "date": "2026-11-11",
       "summary": "Move .git and .github into DiskDiet/ so diskdiet is at the repo root",

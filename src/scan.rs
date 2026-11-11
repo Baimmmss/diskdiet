@@ -362,6 +362,7 @@ mod tests {
                     .unwrap()
                     .display()
                     .to_string()
+                    .replace('\\', "/") // Windows separators
             })
             .collect();
         assert_eq!(names, vec!["crate/target", "web/node_modules"]);

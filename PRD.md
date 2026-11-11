@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | Version | 0.1.0 |
-| Status | published on GitHub (no release tag, not on crates.io) |
+| Status | published on GitHub and crates.io (v0.1.0); no release tag yet |
 | Updated | 2026-11-11 |
 
 ## Problem
@@ -103,14 +103,13 @@ Every project a developer clones leaves rebuildable clutter behind: `node_module
 | Real-machine testing and fixes (false positives, layout, cursor, speed, idle CPU) | done |
 | GitHub publish | done by the user: `Baimmmss/diskdiet`, branch `master` |
 | Release tag and binaries | todo, only when the user says so |
-| crates.io publish | todo, only when the user says so |
+| crates.io publish | done 2026-11-11: diskdiet v0.1.0 (user asked) |
 
 ## Open questions
 
 - **Repo layout.** Resolved on 2026-11-11: moved `.git` and `.github` into `DiskDiet/` so `DiskDiet/` is the git repository root (`Baimmmss/diskdiet`), removing `mannerly/`, `AGENTS.md`, `CLAUDE.md`, `.DS_Store`, and the `DiskDiet/` subfolder wrapper from the repo. `README.md`, `install.sh`, and CI/release workflows now use root-level paths.
 - **Build files committed.** `DiskDiet/target/` (12,342 files, ~1.2 GB, ~340 MB compressed) is in pushed commit 6703ca8. Fixed in `HEAD`: `.gitignore` ignores `target/` and the files are untracked. They stay in history until it is rewritten with a force-push; the user decides.
 - **GitHub account.** Repo is under `Baimmmss`; the crates.io login shown was `punyebaim`.
-- **crates.io.** Publish? `cargo login` not done; the name `diskdiet` was free on 2026-11-11.
 - **Star target** of 500 in the first month is a guess.
 - **Trash vs permanent delete** as the default.
 
