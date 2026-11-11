@@ -1,0 +1,9 @@
+{
+  "name": "mannerly",
+  "description": "Check and fix the behavior of command-line tools: help, exit codes, errors, pipes, NO_COLOR, Ctrl-C.",
+  "version": "0.1.0",
+  "author": { "name": "baim" },
+  "homepage": "https://github.com/Baimmmss/mannerly",
+  "license": "MIT",
+  "keywords": ["cli", "lint", "ux"]
+}

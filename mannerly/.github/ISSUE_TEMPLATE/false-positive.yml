@@ -1,0 +1,36 @@
+name: Wrong result (false positive)
+description: mannerly failed or warned about something the tool does correctly
+labels: [bug, false-positive]
+body:
+  - type: input
+    id: command
+    attributes:
+      label: Command checked
+      placeholder: mannerly gh
+    validations:
+      required: true
+  - type: input
+    id: check
+    attributes:
+      label: Check id and what it said
+      placeholder: "robust.ctrl-c: ignored Ctrl-C twice and Ctrl-D"
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is this wrong?
+      description: What the tool actually does, and why that's fine.
+    validations:
+      required: true
+  - type: textarea
+    id: dump
+    attributes:
+      label: Debug output (optional)
+      description: Run with MANNERLY_DUMP=1 and paste the part for the failing run. Remove anything private.
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: mannerly version and OS
+      placeholder: mannerly 0.1.0, macOS 15

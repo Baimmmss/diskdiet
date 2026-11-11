@@ -1,0 +1,8 @@
+/Users/user/audah/target/release/deps/indoc-0781ce337cabb5b7.d: /Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/indoc-2.0.8/src/lib.rs /Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/indoc-2.0.8/src/error.rs /Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/indoc-2.0.8/src/expr.rs /Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/indoc-2.0.8/src/unindent.rs
+
+/Users/user/audah/target/release/deps/libindoc-0781ce337cabb5b7.dylib: /Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/indoc-2.0.8/src/lib.rs /Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/indoc-2.0.8/src/error.rs /Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/indoc-2.0.8/src/expr.rs /Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/indoc-2.0.8/src/unindent.rs
+
+/Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/indoc-2.0.8/src/lib.rs:
+/Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/indoc-2.0.8/src/error.rs:
+/Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/indoc-2.0.8/src/expr.rs:
+/Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/indoc-2.0.8/src/unindent.rs:
