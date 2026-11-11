@@ -10,7 +10,7 @@ homepage = "https://github.com/Baimmmss/diskdiet"
 readme = "README.md"
 keywords = ["cli", "disk", "cleanup", "node-modules", "tui"]
 categories = ["command-line-utilities", "filesystem", "development-tools"]
-exclude = ["assets/", ".github/", "demo.tape"]
+exclude = ["assets/", ".github/", "demo.tape", "PRD.md", "log.json"]
 
 [dependencies]
 clap = { version = "4.6.7", features = ["derive", "wrap_help"] }

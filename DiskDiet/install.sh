@@ -1,37 +1,59 @@
 #!/bin/sh
-# Installs the latest diskdiet release binary.
-#   curl -fsSL https://raw.githubusercontent.com/Baimmmss/diskdiet/main/install.sh | sh
+# Installs diskdiet.
+#   curl -fsSL https://raw.githubusercontent.com/Baimmmss/diskdiet/master/DiskDiet/install.sh | sh
+# Downloads the prebuilt binary from the latest GitHub release. If there is no
+# release binary for this machine yet, builds it from source with cargo instead.
 # Set DISKDIET_INSTALL_DIR to choose where it goes (default: ~/.local/bin).
 set -eu
 
 REPO="Baimmmss/diskdiet"
 DIR="${DISKDIET_INSTALL_DIR:-$HOME/.local/bin}"
 
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
+
+build_from_source() {
+  if ! command -v cargo >/dev/null 2>&1; then
+    echo "diskdiet: $1, and cargo is not installed to build it from source." >&2
+    echo "Install Rust from https://rustup.rs, then run this again." >&2
+    exit 1
+  fi
+  echo "$1; building from source with cargo (takes a minute)…"
+  cargo install --git "https://github.com/$REPO" --locked --root "$tmp/root" diskdiet
+  mv "$tmp/root/bin/diskdiet" "$tmp/diskdiet"
+}
+
+target=""
 case "$(uname -s)" in
   Darwin) os="apple-darwin" ;;
   Linux) os="unknown-linux-musl" ;;
-  *) echo "diskdiet: unsupported OS $(uname -s); try: cargo install diskdiet" >&2; exit 1 ;;
+  *) os="" ;;
 esac
 case "$(uname -m)" in
   x86_64 | amd64) arch="x86_64" ;;
   arm64 | aarch64) arch="aarch64" ;;
-  *) echo "diskdiet: unsupported CPU $(uname -m); try: cargo install diskdiet" >&2; exit 1 ;;
+  *) arch="" ;;
 esac
+[ -n "$os" ] && [ -n "$arch" ] && target="$arch-$os"
 
-target="$arch-$os"
-url="https://github.com/$REPO/releases/latest/download/diskdiet-$target.tar.gz"
-tmp="$(mktemp -d)"
-trap 'rm -rf "$tmp"' EXIT
+if [ -z "$target" ]; then
+  build_from_source "no prebuilt binary for $(uname -s) $(uname -m)"
+else
+  base="https://github.com/$REPO/releases/latest/download/diskdiet-$target"
+  echo "Downloading diskdiet for $target…"
+  if curl -fsSL "$base.tar.gz" -o "$tmp/diskdiet.tar.gz" 2>/dev/null; then
+    if curl -fsSL "$base.sha256" -o "$tmp/diskdiet.sha256" 2>/dev/null; then
+      expected="$(cut -d' ' -f1 < "$tmp/diskdiet.sha256")"
+      if command -v shasum >/dev/null 2>&1; then actual="$(shasum -a 256 "$tmp/diskdiet.tar.gz" | cut -d' ' -f1)"
+      else actual="$(sha256sum "$tmp/diskdiet.tar.gz" | cut -d' ' -f1)"; fi
+      [ "$expected" = "$actual" ] || { echo "diskdiet: checksum mismatch, aborting" >&2; exit 1; }
+    fi
+    tar -xzf "$tmp/diskdiet.tar.gz" -C "$tmp"
+  else
+    build_from_source "no release binary for $target yet"
+  fi
+fi
 
-echo "Downloading diskdiet for $target…"
-curl -fsSL "$url" -o "$tmp/diskdiet.tar.gz"
-curl -fsSL "https://github.com/$REPO/releases/latest/download/diskdiet-$target.sha256" -o "$tmp/diskdiet.tar.gz.sha256" 2>/dev/null && {
-  expected="$(cut -d' ' -f1 < "$tmp/diskdiet.tar.gz.sha256")"
-  if command -v shasum >/dev/null; then actual="$(shasum -a 256 "$tmp/diskdiet.tar.gz" | cut -d' ' -f1)"
-  else actual="$(sha256sum "$tmp/diskdiet.tar.gz" | cut -d' ' -f1)"; fi
-  [ "$expected" = "$actual" ] || { echo "diskdiet: checksum mismatch, aborting" >&2; exit 1; }
-}
-tar -xzf "$tmp/diskdiet.tar.gz" -C "$tmp"
 mkdir -p "$DIR"
 mv "$tmp/diskdiet" "$DIR/diskdiet"
 chmod +x "$DIR/diskdiet"

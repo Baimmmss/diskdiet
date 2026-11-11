@@ -1,0 +1,57 @@
+{
+  "project": "diskdiet",
+  "about": "Change log, like git log: one entry per set of changes, newest first. Only what changed, which files, and why. Plans, research and requirements live in PRD.md.",
+  "entries": [
+    {
+      "id": 3,
+      "date": "2026-11-11",
+      "summary": "Fix install and CI for the DiskDiet/ subfolder layout",
+      "files": {
+        "added": [
+          ".gitignore"
+        ],
+        "modified": [
+          "README.md",
+          "PRD.md",
+          "log.json",
+          "../.github/workflows/ci.yml",
+          "../.github/workflows/release.yml"
+        ],
+        "deleted": [
+          "target/ (12,342 build files, untracked from git only; still on disk)"
+        ]
+      },
+      "why": "Pushed commit 6703ca8 moved the crate into DiskDiet/ next to mannerly/ and committed ~1.2 GB of build files. README `cargo install --git` now names the package (`diskdiet`), since mannerly/Cargo.toml made the plain command fail; links point at master/DiskDiet/. target/ is ignored and untracked. Workflows run in DiskDiet/ (working-directory, rust-cache workspaces, manifest-path, changelog path) and CI triggers on master instead of main."
+    },
+    {
+      "id": 2,
+      "date": "2026-11-11",
+      "summary": "Make every README install method work before the first release",
+      "files": {
+        "added": [],
+        "modified": [
+          "README.md",
+          "install.sh"
+        ],
+        "deleted": []
+      },
+      "why": "diskdiet is not on crates.io and the GitHub repo has no releases, so `cargo install diskdiet` and the install script failed; the raw URLs also pointed at a `main` branch that doesn't exist (it's `master`). README now uses `cargo install --git`, a clone + `cargo install --path` option and `master` URLs. install.sh falls back to building from source with cargo when no release binary exists, and still verifies checksums when one does."
+    },
+    {
+      "id": 1,
+      "date": "2026-11-11",
+      "summary": "Start PRD.md and log.json for diskdiet",
+      "files": {
+        "added": [
+          "PRD.md",
+          "log.json"
+        ],
+        "modified": [
+          "Cargo.toml"
+        ],
+        "deleted": []
+      },
+      "why": "AGENTS.md requires both files in every project folder. State at this point: v0.1.0 Rust CLI/TUI, public at github.com/Baimmmss/diskdiet (master), no GitHub release, not on crates.io. Added both to Cargo.toml `exclude` so they stay out of a future crates.io package."
+    }
+  ]
+}

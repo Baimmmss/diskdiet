@@ -11,7 +11,7 @@ diskdiet finds the gigabytes your dev tools leave behind (dependency folders, bu
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 ![Platforms](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-blue)
 
-<img src="https://raw.githubusercontent.com/Baimmmss/diskdiet/main/assets/screenshot.svg" alt="diskdiet interactive view: folders sorted by size with a per-ecosystem breakdown" width="900">
+<img src="https://raw.githubusercontent.com/Baimmmss/diskdiet/master/DiskDiet/assets/screenshot.svg" alt="diskdiet interactive view: folders sorted by size with a per-ecosystem breakdown" width="900">
 
 </div>
 
@@ -31,17 +31,24 @@ diskdiet finds all of it in one pass and shows you what's worth deleting first.
 
 ## Install
 
-```bash
-cargo install diskdiet
-```
-
-Or grab a prebuilt binary (macOS, Linux):
+With [Rust](https://rustup.rs) installed (any OS, including Windows):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Baimmmss/diskdiet/main/install.sh | sh
+cargo install --git https://github.com/Baimmmss/diskdiet --locked diskdiet
 ```
 
-Windows and other platforms: download from [Releases](https://github.com/Baimmmss/diskdiet/releases).
+Or use the install script (macOS, Linux). It downloads a prebuilt binary from the latest [release](https://github.com/Baimmmss/diskdiet/releases) and falls back to building with cargo when there isn't one for your machine:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Baimmmss/diskdiet/master/DiskDiet/install.sh | sh
+```
+
+From a clone:
+
+```bash
+git clone https://github.com/Baimmmss/diskdiet && cd diskdiet/DiskDiet
+cargo install --path . --locked
+```
 
 ## Use it
 

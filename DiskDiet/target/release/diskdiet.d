@@ -1,1 +1,0 @@
-/Users/user/audah/target/release/diskdiet: /Users/user/audah/src/caches.rs /Users/user/audah/src/delete.rs /Users/user/audah/src/main.rs /Users/user/audah/src/output.rs /Users/user/audah/src/rules.rs /Users/user/audah/src/scan.rs /Users/user/audah/src/tui.rs /Users/user/audah/src/units.rs
