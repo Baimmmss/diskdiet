@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1] - 2026-11-11
+
+- Prebuilt binaries for macOS, Linux and Windows on GitHub releases; the install script downloads them in seconds
+- `cargo binstall diskdiet` installs the prebuilt binary without compiling
+- `cargo install diskdiet` builds about 40% faster (thin LTO, fewer ratatui features)
+- Fixed README links and install instructions after the repository move
+
 ## [0.1.0] - 2026-11-10
 
 First release.

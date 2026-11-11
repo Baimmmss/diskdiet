@@ -31,26 +31,22 @@ diskdiet finds all of it in one pass and shows you what's worth deleting first.
 
 ## Install
 
-With [Rust](https://rustup.rs) installed (any OS, including Windows):
-
-```bash
-cargo install diskdiet --locked
-```
-
-Or use the install script (macOS, Linux). It downloads a prebuilt binary from the latest [release](https://github.com/Baimmmss/diskdiet/releases) and falls back to building with cargo when there isn't one for your machine:
+**macOS and Linux**: downloads a prebuilt binary, done in a few seconds:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Baimmmss/diskdiet/master/install.sh | sh
 ```
 
-Latest unreleased code from GitHub: `cargo install --git https://github.com/Baimmmss/diskdiet --locked`
+**Windows**: download `diskdiet-x86_64-pc-windows-msvc.zip` (or `aarch64` for ARM) from [Releases](https://github.com/Baimmmss/diskdiet/releases/latest), unzip it and run `diskdiet.exe`.
 
-From a clone:
+**With Rust**, on any OS:
 
 ```bash
-git clone https://github.com/Baimmmss/diskdiet && cd diskdiet
-cargo install --path . --locked
+cargo binstall diskdiet          # prebuilt binary, no compiling (needs cargo-binstall)
+cargo install diskdiet --locked  # builds from source, about a minute
 ```
+
+Latest unreleased code: `cargo install --git https://github.com/Baimmmss/diskdiet --locked`
 
 ## Use it
 

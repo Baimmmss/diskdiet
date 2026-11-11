@@ -45,6 +45,7 @@ jobs:
       - uses: taiki-e/upload-rust-binary-action@v1
         with:
           bin: diskdiet
+          profile: dist
           target: ${{ matrix.target }}
           archive: diskdiet-$target
           checksum: sha256

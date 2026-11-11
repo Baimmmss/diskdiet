@@ -3,7 +3,41 @@
   "about": "Change log, like git log: one entry per set of changes, newest first. Only what changed, which files, and why. Plans, research and requirements live in PRD.md.",
   "entries": [
     {
-      "id": 5,
+      "id": 8,
+      "date": "2026-11-11",
+      "summary": "Prepare v0.1.1 with prebuilt-binary installs first",
+      "files": {
+        "added": [],
+        "modified": [
+          "Cargo.toml",
+          "Cargo.lock",
+          "CHANGELOG.md",
+          "PRD.md",
+          "README.md",
+          "log.json"
+        ],
+        "deleted": []
+      },
+      "why": "Compiling from source still takes minutes on a fresh machine, which puts people off. README now leads with the curl script (prebuilt binary, under a second locally) and a Windows download, then `cargo binstall diskdiet` (binstall metadata added, matching the release asset names) before `cargo install`. Version bumped to 0.1.1 with a CHANGELOG entry, which the release workflow needs. Committed and pushed with the v0.1.1 tag to start the release workflow."
+    },
+    {
+      "id": 7,
+      "date": "2026-11-11",
+      "summary": "Make cargo install faster: thin LTO and only the ratatui features used",
+      "files": {
+        "added": [],
+        "modified": [
+          "Cargo.toml",
+          "Cargo.lock",
+          ".github/workflows/release.yml",
+          "log.json"
+        ],
+        "deleted": []
+      },
+      "why": "`cargo install diskdiet` felt slow; half of a clean build (55 s of 106 s) was the final single-threaded fat-LTO link. The release profile now uses thin LTO and default codegen units, and ratatui drops its default macros and calendar widget, which diskdiet doesn't use. Clean install: 106 s to 62 s on the author's Intel Mac, binary 1.36 to 1.64 MB. A new `dist` profile keeps fat LTO for GitHub release binaries (still 1.36 MB), and release.yml builds with it."
+    },
+    {
+      "id": 6,
       "date": "2026-11-11",
       "summary": "Fix Windows path separators in the scan test",
       "files": {
@@ -17,7 +51,7 @@
       "why": "CI failed on windows-latest: scan::tests::finds_artifacts_but_not_lookalikes compared paths with '/' but Windows prints '\\\\'. Test-only change; the scanner was fine."
     },
     {
-      "id": 4,
+      "id": 5,
       "date": "2026-11-11",
       "summary": "Publish diskdiet v0.1.0 to crates.io and install from it",
       "files": {

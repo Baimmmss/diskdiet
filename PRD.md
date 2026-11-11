@@ -4,8 +4,8 @@
 
 | | |
 |---|---|
-| Version | 0.1.0 |
-| Status | published on GitHub and crates.io (v0.1.0); no release tag yet |
+| Version | 0.1.1 |
+| Status | published on GitHub (v0.1.1 tag pushed) and crates.io |
 | Updated | 2026-11-11 |
 
 ## Problem
@@ -102,7 +102,7 @@ Every project a developer clones leaves rebuildable clutter behind: `node_module
 | Tests: 30 passing on macOS (23 unit, 7 end-to-end) | done; after the move, `cargo clean -p diskdiet` fixed stale build paths (2026-11-11) |
 | Real-machine testing and fixes (false positives, layout, cursor, speed, idle CPU) | done |
 | GitHub publish | done by the user: `Baimmmss/diskdiet`, branch `master` |
-| Release tag and binaries | todo, only when the user says so |
+| Release tag and binaries | done 2026-11-11: `v0.1.1` tag pushed to trigger the release workflow |
 | crates.io publish | done 2026-11-11: diskdiet v0.1.0 (user asked) |
 
 ## Open questions

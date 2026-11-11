@@ -1,6 +1,6 @@
 [package]
 name = "diskdiet"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 rust-version = "1.88"
 description = "Find and delete the gigabytes your dev tools leave behind: node_modules, target/, .venv, Xcode DerivedData, package-manager caches and more."
@@ -12,9 +12,24 @@ keywords = ["cli", "disk", "cleanup", "node-modules", "tui"]
 categories = ["command-line-utilities", "filesystem", "development-tools"]
 exclude = ["assets/", ".github/", "demo.tape", "PRD.md", "log.json"]
 
+
+# `cargo binstall diskdiet` downloads the prebuilt binary from the GitHub release.
+[package.metadata.binstall]
+pkg-url = "{ repo }/releases/download/v{ version }/{ name }-{ target }.tar.gz"
+pkg-fmt = "tgz"
+bin-dir = "{ bin }{ binary-ext }"
+
+[package.metadata.binstall.overrides.x86_64-pc-windows-msvc]
+pkg-url = "{ repo }/releases/download/v{ version }/{ name }-{ target }.zip"
+pkg-fmt = "zip"
+
+[package.metadata.binstall.overrides.aarch64-pc-windows-msvc]
+pkg-url = "{ repo }/releases/download/v{ version }/{ name }-{ target }.zip"
+pkg-fmt = "zip"
+
 [dependencies]
 clap = { version = "4.6.7", features = ["derive", "wrap_help"] }
-ratatui = "0.30.2"
+ratatui = { version = "0.30.2", default-features = false, features = ["crossterm", "layout-cache", "underline-color"] }
 rayon = "1.12.0"
 serde = { version = "1.0.229", features = ["derive"] }
 serde_json = "1.0.154"
@@ -22,7 +37,13 @@ serde_json = "1.0.154"
 [dev-dependencies]
 tempfile = "3.27.0"
 
+# Used by `cargo install`: thin LTO keeps the build quick (~70 s clean).
 [profile.release]
+lto = "thin"
+strip = true
+
+# Smallest binary, for the GitHub release downloads (slower to build).
+[profile.dist]
+inherits = "release"
 lto = true
 codegen-units = 1
-strip = true
