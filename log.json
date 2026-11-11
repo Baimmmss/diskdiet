@@ -3,6 +3,20 @@
   "about": "Change log, like git log: one entry per set of changes, newest first. Only what changed, which files, and why. Plans, research and requirements live in PRD.md.",
   "entries": [
     {
+      "id": 9,
+      "date": "2026-11-11",
+      "summary": "Fix install.sh failing with 'target: unbound variable' on macOS",
+      "files": {
+        "added": [],
+        "modified": [
+          "install.sh",
+          "log.json"
+        ],
+        "deleted": []
+      },
+      "why": "macOS /bin/sh (bash 3.2) under a UTF-8 locale read the first byte of the '…' after $target as part of the variable name, so `set -u` aborted on line 43. The script is now plain ASCII and every variable is braced. Tested piped into sh, bash, zsh and dash under UTF-8 and C locales; all install the real v0.1.1 release binary."
+    },
+    {
       "id": 8,
       "date": "2026-11-11",
       "summary": "Prepare v0.1.1 with prebuilt-binary installs first",
