@@ -3,6 +3,29 @@
   "about": "Change log, like git log: one entry per set of changes, newest first. Only what changed, which files, and why. Plans, research and requirements live in PRD.md.",
   "entries": [
     {
+      "id": 4,
+      "date": "2026-11-11",
+      "summary": "Move .git and .github into DiskDiet/ so diskdiet is at the repo root",
+      "files": {
+        "added": [],
+        "modified": [
+          ".github/workflows/ci.yml",
+          ".github/workflows/release.yml",
+          "PRD.md",
+          "README.md",
+          "install.sh",
+          "log.json"
+        ],
+        "deleted": [
+          "../.DS_Store (from git index)",
+          "../AGENTS.md (from git index)",
+          "../CLAUDE.md (from git index)",
+          "../mannerly/ (from git index)"
+        ]
+      },
+      "why": "The git repo (.git and .github) had been left in the parent workspace folder (/Users/user/audah), causing GitHub to show DiskDiet/ and mannerly/ as subfolders with no root README. Moved .git and .github into DiskDiet/ so the crate and README.md sit at the root of Baimmmss/diskdiet, and updated README, install.sh, and workflow paths back to the repo root."
+    },
+    {
       "id": 3,
       "date": "2026-11-11",
       "summary": "Fix install and CI for the DiskDiet/ subfolder layout",

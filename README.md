@@ -11,7 +11,7 @@ diskdiet finds the gigabytes your dev tools leave behind (dependency folders, bu
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 ![Platforms](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-blue)
 
-<img src="https://raw.githubusercontent.com/Baimmmss/diskdiet/master/DiskDiet/assets/screenshot.svg" alt="diskdiet interactive view: folders sorted by size with a per-ecosystem breakdown" width="900">
+<img src="https://raw.githubusercontent.com/Baimmmss/diskdiet/master/assets/screenshot.svg" alt="diskdiet interactive view: folders sorted by size with a per-ecosystem breakdown" width="900">
 
 </div>
 
@@ -34,19 +34,21 @@ diskdiet finds all of it in one pass and shows you what's worth deleting first.
 With [Rust](https://rustup.rs) installed (any OS, including Windows):
 
 ```bash
-cargo install --git https://github.com/Baimmmss/diskdiet --locked diskdiet
+cargo install diskdiet --locked
 ```
 
 Or use the install script (macOS, Linux). It downloads a prebuilt binary from the latest [release](https://github.com/Baimmmss/diskdiet/releases) and falls back to building with cargo when there isn't one for your machine:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Baimmmss/diskdiet/master/DiskDiet/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/Baimmmss/diskdiet/master/install.sh | sh
 ```
+
+Latest unreleased code from GitHub: `cargo install --git https://github.com/Baimmmss/diskdiet --locked`
 
 From a clone:
 
 ```bash
-git clone https://github.com/Baimmmss/diskdiet && cd diskdiet/DiskDiet
+git clone https://github.com/Baimmmss/diskdiet && cd diskdiet
 cargo install --path . --locked
 ```
 

@@ -8,11 +8,6 @@ on:
 env:
   CARGO_TERM_COLOR: always
 
-# The crate lives in DiskDiet/, not at the repo root.
-defaults:
-  run:
-    working-directory: DiskDiet
-
 jobs:
   test:
     name: test (${{ matrix.os }})
@@ -25,8 +20,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: DiskDiet
       - run: cargo test --locked
 
   lint:
@@ -37,8 +30,6 @@ jobs:
         with:
           components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: DiskDiet
       - run: cargo fmt --check
       - run: cargo clippy --all-targets --locked -- -D warnings
 
@@ -48,6 +39,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@1.88
       - uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: DiskDiet
       - run: cargo check --locked

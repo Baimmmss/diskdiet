@@ -107,10 +107,8 @@ Every project a developer clones leaves rebuildable clutter behind: `node_module
 
 ## Open questions
 
-- **Repo layout.** The repo root holds `DiskDiet/` and `mannerly/`. Local fix (2026-11-11, not pushed): CI and release workflows now run in `DiskDiet/`, and CI triggers on `master` instead of `main`. Because `mannerly/Cargo.toml` is in the same repo, `cargo install --git` must name the package (`... diskdiet`). Still open: should the repo be DiskDiet-only (crate at the root)?
-- **Build files committed.** `DiskDiet/target/` (12,342 files, ~1.2 GB, ~340 MB compressed) is in pushed commit 6703ca8, so `cargo install --git` downloads all of it. Local fix (2026-11-11, not pushed): `DiskDiet/.gitignore` ignores `target/` and the files are untracked (`git rm --cached`). They stay in history until it is rewritten with a force-push; the user decides.
-- **No README on the repo's front page.** GitHub only shows a README at the repo root; `DiskDiet/README.md` isn't displayed there.
-- **Broken links.** Fixed locally on 2026-11-11: README screenshot and `install.sh` URLs use `master/DiskDiet/...`, which resolve on GitHub now.
+- **Repo layout.** Resolved on 2026-11-11: moved `.git` and `.github` into `DiskDiet/` so `DiskDiet/` is the git repository root (`Baimmmss/diskdiet`), removing `mannerly/`, `AGENTS.md`, `CLAUDE.md`, `.DS_Store`, and the `DiskDiet/` subfolder wrapper from the repo. `README.md`, `install.sh`, and CI/release workflows now use root-level paths.
+- **Build files committed.** `DiskDiet/target/` (12,342 files, ~1.2 GB, ~340 MB compressed) is in pushed commit 6703ca8. Fixed in `HEAD`: `.gitignore` ignores `target/` and the files are untracked. They stay in history until it is rewritten with a force-push; the user decides.
 - **GitHub account.** Repo is under `Baimmmss`; the crates.io login shown was `punyebaim`.
 - **crates.io.** Publish? `cargo login` not done; the name `diskdiet` was free on 2026-11-11.
 - **Star target** of 500 in the first month is a guess.

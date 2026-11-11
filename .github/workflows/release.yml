@@ -10,11 +10,6 @@ on:
 permissions:
   contents: write
 
-# The crate lives in DiskDiet/, not at the repo root.
-defaults:
-  run:
-    working-directory: DiskDiet
-
 jobs:
   create-release:
     runs-on: ubuntu-latest
@@ -22,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: taiki-e/create-gh-release-action@v1
         with:
-          changelog: DiskDiet/CHANGELOG.md
+          changelog: CHANGELOG.md
           token: ${{ secrets.GITHUB_TOKEN }}
 
   binaries:
@@ -50,7 +45,6 @@ jobs:
       - uses: taiki-e/upload-rust-binary-action@v1
         with:
           bin: diskdiet
-          manifest-path: DiskDiet/Cargo.toml
           target: ${{ matrix.target }}
           archive: diskdiet-$target
           checksum: sha256

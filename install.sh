@@ -1,6 +1,6 @@
 #!/bin/sh
 # Installs diskdiet.
-#   curl -fsSL https://raw.githubusercontent.com/Baimmmss/diskdiet/master/DiskDiet/install.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/Baimmmss/diskdiet/master/install.sh | sh
 # Downloads the prebuilt binary from the latest GitHub release. If there is no
 # release binary for this machine yet, builds it from source with cargo instead.
 # Set DISKDIET_INSTALL_DIR to choose where it goes (default: ~/.local/bin).
@@ -19,7 +19,7 @@ build_from_source() {
     exit 1
   fi
   echo "$1; building from source with cargo (takes a minute)…"
-  cargo install --git "https://github.com/$REPO" --locked --root "$tmp/root" diskdiet
+  cargo install diskdiet --locked --root "$tmp/root"
   mv "$tmp/root/bin/diskdiet" "$tmp/diskdiet"
 }
 
